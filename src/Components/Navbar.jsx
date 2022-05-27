@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 const Navbar = ({setProductdata}) => {
-  const navItems=[{item:"NIKE'S BEST"},{item:"SOCCER",},{item:"SNEAKERS"},{item:"CLOTHING"}]
+  const navItems=[{item:"NIKE'S BEST",link:'/'},{item:"SOCCER",link:'/Soccer'},{item:"SNEAKERS",link:'/Sneakers'},{item:"CLOTHING",link:'/Clothing'}]
   return (
     <div className='navbarContainer'>
       <ul className="navbar">
-        {navItems.map((items)=><li key={items.item}><a className='navlinks' href="#">{items.item}</a></li>)}
+        {navItems.map((items)=><li key={items.item}><Link className='navlinks' to={items.link}>{items.item}</Link></li>)}
 
 
       </ul>
