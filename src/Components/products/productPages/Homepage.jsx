@@ -1,10 +1,10 @@
 import React from 'react'
 import Products from '../Products'
 
-const Homepage = ({productData}) => {
+const Homepage = ({productData,handleAddtoCart}) => {
   return (
     <div>
-    <Products productData={productData}/>
+    <Products productData={productData}handleAddtoCart={handleAddtoCart}/>
 
 
     </div>

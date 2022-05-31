@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
 
-const ShoeProductCard = ({ productData }) => {
+const ShoeProductCard = ({ productData,handleAddtoCart }) => {
   const [selectedSize, setSelectedSize] = useState(null);
 
   const sizes = [7, 8, 9, 10];
-console.log(selectedSize);
+  
   return productData.map((product) => {
     return (
       <div key={product.id} className="productsGrid">
@@ -48,12 +48,12 @@ console.log(selectedSize);
 
               <a href="#" alt="logo">
                 {" "}
-                <i className="fa-solid fa-cart-arrow-down"></i>
+                <i onClick={()=>{handleAddtoCart(product,selectedSize,product.id)}}className="fa-solid fa-cart-arrow-down"></i>
               </a>
               <br />
               <span className="price">Price: {product.price}</span>
               <br />
-              <i
+              <i 
                 style={{ color: "white", cursor: "pointer" }}
                 className="fa-solid fa-circle-info"
               ></i>

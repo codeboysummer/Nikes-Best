@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const Navbar = ({setProductdata}) => {
-  const navItems=[{item:"NIKE'S BEST",link:'/'},{item:"SOCCER",link:'/Soccer'},{item:"SNEAKERS",link:'/Sneakers'},{item:"CLOTHING",link:'/Clothing'}]
+const Navbar = ({cart}) => {
+  const navItems=[{item:"NIKE'S BEST",link:'/'},{item:"SOCCER",link:'/Soccer'},{item:"SNEAKERS",link:'/Sneakers'},{item:"CLOTHING",link:'/Clothing'},{item:<i className="fa-solid fa-cart-shopping"></i>,link:'/Cart'}]
   return (
     <div className='navbarContainer'>
       <ul className="navbar">
@@ -9,6 +9,7 @@ const Navbar = ({setProductdata}) => {
 
 
       </ul>
+
 
 
     </div>
