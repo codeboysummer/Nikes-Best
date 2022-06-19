@@ -1,23 +1,15 @@
 import "./App.css";
 import Navbar from "./Components/Navbar";
-import { useState,useEffect } from "react";
+import { useState } from "react";
 import Sneakers from "./Components/products/productPages/Sneakers";
 import Soccer from "./Components/products/productPages/Soccer";
-import Homepage from './Components/products/productPages/Homepage';
-import Clothing from './Components/products/productPages/Clothing'
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-} from "react-router-dom";
+import Homepage from "./Components/products/productPages/Homepage";
+import Clothing from "./Components/products/productPages/Clothing";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cart from "./Components/Cart";
 
 function App() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-  const removeItem=(item)=>{
-  }
+  const [cart, setcart] = useState("");
   const [productData] = useState([
     {
       id: 1,
@@ -29,7 +21,7 @@ function App() {
       size: null,
       itemcolor: null,
       catagory: "soccer",
-      quantity:1
+      quantity: 1,
     },
 
     {
@@ -42,7 +34,7 @@ function App() {
       size: null,
       itemcolor: null,
       catagory: "soccer",
-      quantity:1
+      quantity: 1,
     },
     {
       id: 3,
@@ -53,7 +45,8 @@ function App() {
       img: "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/014/643/392/original/AH7241_107.png.png?action=crop&width=950",
       size: null,
       itemcolor: null,
-      catagory: "soccer",quantity:1
+      catagory: "soccer",
+      quantity: 1,
     },
     {
       id: 4,
@@ -64,7 +57,8 @@ function App() {
       img: "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/014/349/887/original/881545_400.png.png?action=crop&width=950",
       size: null,
       itemcolor: null,
-      catagory: "soccer",quantity:1
+      catagory: "soccer",
+      quantity: 1,
     },
     {
       id: 5,
@@ -75,8 +69,8 @@ function App() {
       img: "https://image.goat.com/transform/v1/attachments/product_template_pictures/images/007/000/511/original/820122_006.png.png?action=crop&width=950",
       size: null,
       itemcolor: null,
-      catagory: "soccer",quantity:1
-      
+      catagory: "soccer",
+      quantity: 1,
     },
 
     {
@@ -88,7 +82,8 @@ function App() {
       img: "https://image.goat.com/transform/v1/attachments/product_template_additional_pictures/images/066/246/952/original/884314_01.jpg.jpeg?action=crop&width=950",
       size: null,
       itemcolor: " #cfbfb0",
-      catagory: "clothing",quantity:1
+      catagory: "clothing",
+      quantity: 1,
     },
 
     {
@@ -101,7 +96,7 @@ function App() {
       size: null,
       itemcolor: " #cfbfb0",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
 
     {
@@ -114,7 +109,7 @@ function App() {
       size: null,
       itemcolor: "#a9aaae",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
 
     {
@@ -127,7 +122,7 @@ function App() {
       size: null,
       itemcolor: "#a9aaae",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
 
     {
@@ -140,7 +135,7 @@ function App() {
       size: null,
       itemcolor: "#a9aaae",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
     {
       id: 11,
@@ -152,7 +147,7 @@ function App() {
       size: null,
       itemcolor: "#a9aaae",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
     {
       id: 12,
@@ -164,54 +159,104 @@ function App() {
       size: null,
       itemcolor: "#a9aaae",
       catagory: "sneakers",
-      quantity:1
+      quantity: 1,
     },
   ]);
-
-  const [cart, setcart] = useState('');
-  const handleAddtoCart=(item,selectedSize,id)=>{
- const  updatedItem=updateSelectedSize(item,selectedSize);
-
-
-
- let  newitemArray=[...cart,updatedItem]
-  setcart(newitemArray)
-
-
-console.log(cart);
+  const removeItem = (item) => {};
  
-// fix issue with the add to cart function 
-//URL='https://www.youtube.com/watch?v=S5q4sPe_K_Q';
- }
- const checkDuplicate=(array,object)=>{
 
-array.filter()
+  
+  const handleAddtoCart = (item, selectedSize, id) => {
+    const updatedItem = updateSelectedSize(item, selectedSize);
+    let newitemArray = [...cart, updatedItem];
+    setcart(newitemArray);
+    console.log(cart);
+  };
+  const handleDeleteitem=(item)=>{
 
- }
- 
- 
-  const updateSelectedSize=(item,selectedSize)=>{
-    item.size=selectedSize;
-    return item;
+   const leftoverItems= cart.filter(cartitem=>cartitem.id!==item.id);
+   setcart(leftoverItems);
+   console.log(leftoverItems);
+console.log(item.id);
+
+
+
 
   }
-  
+
+
+  const handleDecrement = (currentQuantity) => {};
+  let handleIncrment = (item) => {
+    item.quantity = item.quantity + 1;
+
+    return item.quantity;
+  };
+
+  const updateSelectedSize = (item, selectedSize) => {
+    item.size = selectedSize;
+    return item;
+  };
+
   return (
     <>
-    <BrowserRouter>
-    <Navbar cart={cart}/>
-    <Routes>
-    
-
-      
-      <Route exact path="/Soccer" element={<Soccer productData={productData} handleAddtoCart={handleAddtoCart}/>}/>
-     <Route exact path="/Sneakers" element={<Sneakers productData={productData} handleAddtoCart={handleAddtoCart}/>}/>
-     <Route exact path="/" element={<Homepage productData={productData} handleAddtoCart={handleAddtoCart}/>}/>
-     <Route exact path="/Clothing" element={<Clothing productData={productData} handleAddtoCart={handleAddtoCart}/>}/>
-     <Route exact path="/Cart" element={<Cart cart={cart} removeItem={removeItem}  />}/>
-    </Routes>
-  </BrowserRouter>
-     
+      <BrowserRouter>
+        <Navbar cart={cart} />
+        <Routes>
+          <Route
+            exact
+            path="/Soccer"
+            element={
+              <Soccer
+                productData={productData}
+                handleAddtoCart={handleAddtoCart}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/Sneakers"
+            element={
+              <Sneakers
+                productData={productData}
+                handleAddtoCart={handleAddtoCart}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/"
+            element={
+              <Homepage
+                productData={productData}
+                handleAddtoCart={handleAddtoCart}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/Clothing"
+            element={
+              <Clothing
+                productData={productData}
+                handleAddtoCart={handleAddtoCart}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/Cart"
+            element={
+              <Cart
+                cart={cart}
+                removeItem={removeItem}
+                handleDecrement={handleDecrement}
+                handleIncrment={handleIncrment}
+                handleDeleteitem={handleDeleteitem}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
